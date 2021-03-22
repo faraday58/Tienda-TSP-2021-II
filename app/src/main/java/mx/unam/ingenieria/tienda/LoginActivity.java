@@ -15,7 +15,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextTextPassword;
     private Button btnIngresar;
     private Button btnRegistrar;
-
+    private String usuario;
+    private String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         btnRegistrar= findViewById(R.id.btnRegistrar);
         btnIngresar.setOnClickListener(onClickListenerIngresar);
         btnRegistrar.setOnClickListener(onClickListenerRegistar);
+        usuario=this.getIntent().getStringExtra("usuario");
+        password=this.getIntent().getStringExtra("password");
 
     }
 
@@ -35,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            String usuario="armando";
-            String password="12345";
 
             if( usuario.equals( editTextTextPersonName.getText().toString())   && password.equals(editTextTextPassword.getText().toString())  )
             {
