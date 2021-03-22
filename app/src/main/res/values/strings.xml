@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tienda</string>
+    <string name="txtvStringBienvenido">Bienvenido</string>
+    <string name="edtNombreUsuarioHint">Nombre Usuario</string>
+    <string name="btnStringIngresar">Ingresar</string>
+    <string name="btnStringRegistrar">Registrar</string>
+    <string name="edtHintUsuarioRegistrar">Nombre de usuario  </string>
+    <string name="edtHintNombreCompletoRegistar">Nombre Completo</string>
+    <string name="btnSalvarRegistro">Salvar</string>
+</resources>
