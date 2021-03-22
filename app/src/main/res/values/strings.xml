@@ -10,5 +10,6 @@
     <string name="nav_menu_inicio">Inicio</string>
     <string name="nav_menu_buscar">Buscar</string>
     <string name="nav_menu_comprar">Comprar</string>
-    <string name="nav_menu_inicia">Inicia</string>
+    <string name="nav_menu_inicia">Sesión</string>
+    <string name="strignTxtvProductos">Productos</string>
 </resources>
