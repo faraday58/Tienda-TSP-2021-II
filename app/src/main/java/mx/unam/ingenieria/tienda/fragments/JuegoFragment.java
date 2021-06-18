@@ -18,18 +18,20 @@ import mx.unam.ingenieria.tienda.R;
 
 public class JuegoFragment extends Fragment {
 
+
+
     private ImageView[][] matImv= new ImageView[4][4];
     private int[][] tablero= {
-        {1,1,2,2},
+        {8,1,2,2},
         {3,3,4,4},
         {5,5,6,6},
-        {7,7,8,8}
+        {7,7,8,1}
     };
 
     //Si se puede dar click sobre una carta y destaparla
     //se desactiva después de destapar dos cartas diferentes
     // se activa nuevamente después de 3 segundos
-    private boolean Activa;
+    private boolean Activa=true;
     //Indica si se le da click por primera vez o segunda vez a una carta
     private int nclik;
     //Guardar la coordenada de la primera carta donde se hace el click
@@ -62,9 +64,54 @@ public class JuegoFragment extends Fragment {
         matImv[3][1]= v.findViewById(R.id.imageView14);
         matImv[3][2]= v.findViewById(R.id.imageView15);
         matImv[3][3]= v.findViewById(R.id.imageView16);
-        revolverCartas();
+
+        matImv[0][0].setOnClickListener(onClickCarta);
+        matImv[0][1].setOnClickListener(onClickCarta);
+        matImv[0][2].setOnClickListener(onClickCarta);
+        matImv[0][3].setOnClickListener(onClickCarta);
+
+        matImv[1][0].setOnClickListener(onClickCarta);
+        matImv[1][1].setOnClickListener(onClickCarta);
+        matImv[1][2].setOnClickListener(onClickCarta);
+        matImv[1][3].setOnClickListener(onClickCarta);
+
+        matImv[2][0].setOnClickListener(onClickCarta);
+        matImv[2][1].setOnClickListener(onClickCarta);
+        matImv[2][2].setOnClickListener(onClickCarta);
+        matImv[2][3].setOnClickListener(onClickCarta);
+
+        matImv[3][0].setOnClickListener(onClickCarta);
+        matImv[3][1].setOnClickListener(onClickCarta);
+        matImv[3][2].setOnClickListener(onClickCarta);
+        matImv[3][3].setOnClickListener(onClickCarta);
+
+
+
+       revolverCartas();
         return v;
     }
+
+    View.OnClickListener onClickCarta = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(Activa){
+                nclik++;
+                if(nclik==2)
+                    if (v == matImv[primerax][primeray]) // Es verdadera si se da clik dos veces a la misma carta
+                    {
+                        nclik--;
+                        return;
+                    }
+
+                verificarCartaSeleccionada(v);
+                if (nclik==2){
+                    congelar3Segundos();
+                }
+            }
+
+
+        }
+    };
 
     private void revolverCartas() {
         for(int i =0; i< 100; i++)
@@ -82,27 +129,6 @@ public class JuegoFragment extends Fragment {
     }
 
 
-    public void onClickCarta(View v){
-        if(Activa){
-            nclik++;
-            if(nclik==2) {
-                if (v == matImv[primerax][primeray]) // Es verdadera si se da clik dos veces a la misma carta
-                {
-                    nclik--;
-                    return;
-                }
-            }
-             verificarCartaSeleccionada(v);
-            if (nclik==2){
-                congelar3Segundos();
-            }
-
-
-
-        }
-
-
-    }
 
     private void congelar3Segundos() {
         nclik=0;

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menOpJuego"
+        android:orderInCategory="102"
+        android:title="@string/menOpStrMemorama"/>
+    <item android:id="@+id/menOpConfigura"
+        android:orderInCategory="101"
+        android:title="@string/menOpStrConfigura"/>
+
+</menu>
