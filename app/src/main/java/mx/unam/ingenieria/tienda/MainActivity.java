@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import mx.unam.ingenieria.tienda.fragments.BuscarFragment;
 import mx.unam.ingenieria.tienda.fragments.InicioFragment;
 import mx.unam.ingenieria.tienda.fragments.JuegoFragment;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView btmNavigationPrincipal;
     private InicioFragment inicioFragment;
     private JuegoFragment juegoFragment;
+    private BuscarFragment buscarFragment;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId())
             {
                 case (R.id.nav_home):
-                    Toast.makeText(getApplicationContext(),"Inicio",Toast.LENGTH_SHORT).show();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContenedor,inicioFragment).commit();
                     break;
                 case (R.id.nav_buscar):
-                    Toast.makeText(getApplicationContext(),"Buscando",Toast.LENGTH_SHORT).show();
+                    buscarFragment= new BuscarFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContenedor,buscarFragment).commit();
                     break;
                 case (R.id.nav_comprar):
                     Toast.makeText(getApplicationContext(),"Carrito de compras",Toast.LENGTH_SHORT).show();
