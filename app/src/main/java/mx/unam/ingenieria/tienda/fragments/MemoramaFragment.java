@@ -67,7 +67,7 @@ public class MemoramaFragment  extends Fragment {
         matImagenes[3][2]= v.findViewById(R.id.imageView15);
         matImagenes[3][3]= v.findViewById(R.id.imageView16);
 
-        //oculto();
+       oculto();
 
         matImagenes[0][0].setOnClickListener(onClick);
         matImagenes[0][1].setOnClickListener(onClick);

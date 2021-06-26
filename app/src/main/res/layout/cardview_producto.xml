@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtvCtitulo"
+            android:text="Estrenar"
+            android:textSize="32sp"
+            android:gravity="center"
+            />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:src="@drawable/zapatos"
+            android:scaleType="fitXY"
+            android:id="@+id/imgbCVProducto"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:id="@+id/txtvCVdescribe"
+            android:text="Un momento dicreto"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¡Vamos a la colección!"
+            android:textSize="20sp"
+            android:id="@+id/btnCVcoleccion"
+            />
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
