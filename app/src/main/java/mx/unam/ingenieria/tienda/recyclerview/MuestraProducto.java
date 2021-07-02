@@ -3,8 +3,20 @@ package mx.unam.ingenieria.tienda.recyclerview;
 public class MuestraProducto {
 
     private String titulo;
-    private int imagen;
+    private String imagen;
     private String descripcion;
+
+    public MuestraProducto(){
+
+    }
+
+    public MuestraProducto(String titulo, String imagen, String descripcion) {
+        this.titulo = titulo;
+        this.imagen = imagen;
+        this.descripcion = descripcion;
+    }
+
+
 
     public String getTitulo() {
         return titulo;
@@ -14,11 +26,11 @@ public class MuestraProducto {
         this.titulo = titulo;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
@@ -30,9 +42,7 @@ public class MuestraProducto {
         this.descripcion = descripcion;
     }
 
-    public MuestraProducto(String titulo, int imagen, String descripcion) {
-        this.titulo = titulo;
-        this.imagen = imagen;
-        this.descripcion = descripcion;
-    }
+
+
+
 }
