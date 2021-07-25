@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:id="@+id/fragmentContenedor"
         android:layout_above="@id/btmNavigationPrincipal"
-        />
+        >
+    </FrameLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +24,13 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/menu_navigation_botom"
          />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/btmNavigationPrincipal"
 
-
+        android:src="@drawable/ic_actualizar_24" />
 
 </RelativeLayout>

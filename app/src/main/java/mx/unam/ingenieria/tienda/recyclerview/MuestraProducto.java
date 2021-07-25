@@ -16,8 +16,6 @@ public class MuestraProducto {
         this.descripcion = descripcion;
     }
 
-
-
     public String getTitulo() {
         return titulo;
     }
@@ -41,8 +39,5 @@ public class MuestraProducto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-
-
 
 }

@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -53,8 +55,15 @@ public class InicioFragment extends Fragment {
         RellenarLista();
         lstProductos.setOnItemClickListener(onClickItem);
         registerForContextMenu(lstProductos);
+
+
+
+
+
         return v;
     }
+
+
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {

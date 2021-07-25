@@ -55,7 +55,7 @@ public class BuscarFragment extends Fragment {
     }
 
     private FirestoreRecyclerOptions Consulta() {
-        Query query= mFirestore.collection("Producto");
+        Query query= mFirestore.collection("Producto").whereEqualTo("titulo","Trabajo");
         FirestoreRecyclerOptions<MuestraProducto> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<MuestraProducto>()
                 .setQuery(query,MuestraProducto.class).build();
         return firestoreRecyclerOptions;
@@ -67,6 +67,7 @@ public class BuscarFragment extends Fragment {
         mAdapter.startListening();
     }
 
+    //
     /*
     private void InicializarMuestraProductos() {
         productos= new ArrayList<>();

@@ -13,4 +13,8 @@
     <string name="nav_menu_inicia">Sesión</string>
     <string name="strmenSalvar">Salvar</string>
     <string name="strmenCargar">Cargar</string>
+    <string name="txtv_titulo">Título</string>
+    <string name="txtv_descripcion">Descripción</string>
+    <string name="btnBuscarFoto">Foto</string>
+    <string name="btnActualizar">Actualizar</string>
 </resources>

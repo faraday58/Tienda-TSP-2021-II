@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import mx.unam.ingenieria.tienda.fragments.ActualizarFragment;
 import mx.unam.ingenieria.tienda.fragments.BuscarFragment;
 import mx.unam.ingenieria.tienda.fragments.ComprarFragment;
 import mx.unam.ingenieria.tienda.fragments.InicioFragment;
@@ -25,23 +28,35 @@ public class MainActivity extends AppCompatActivity {
     private SesionFragment sesionFragment;
     private ComprarFragment comprarFragment;
     private OperacionLargaFragment operacionLargaFragment;
+    private FloatingActionButton fab;
+    private ActualizarFragment actualizarFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         btmNavigationPrincipal= findViewById(R.id.btmNavigationPrincipal);
+        fab= findViewById(R.id.fab);
         inicioFragment= new InicioFragment();
         buscarFragment= new BuscarFragment();
         sesionFragment= new SesionFragment();
         comprarFragment= new ComprarFragment();
+        actualizarFragment= new ActualizarFragment();
         operacionLargaFragment= new OperacionLargaFragment();
+        fab.setOnClickListener(onClickFab);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContenedor,inicioFragment).commit();
 
         btmNavigationPrincipal.setOnNavigationItemSelectedListener(navListener);
 
     }
+
+    View.OnClickListener onClickFab= new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContenedor,actualizarFragment).commit();
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
