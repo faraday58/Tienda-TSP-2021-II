@@ -22,6 +22,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,6 +34,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import mx.unam.ingenieria.tienda.R;
+import mx.unam.ingenieria.tienda.recyclerview.MuestraProducto;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -45,7 +48,9 @@ public class ActualizarFragment extends Fragment {
     private EditText edtTitulo;
     private Button btnFoto;
     private Button btnActualizar;
-    String imagen;
+    private String imagen;
+    private String descripcion;
+    private String titulo;
 
     @Nullable
     @Override
@@ -60,6 +65,7 @@ public class ActualizarFragment extends Fragment {
         db= FirebaseFirestore.getInstance();
 
         btnFoto.setOnClickListener(onClickFoto);
+        btnActualizar.setOnClickListener(onClickActualizar);
         return v;
     }
 
@@ -69,6 +75,42 @@ public class ActualizarFragment extends Fragment {
             AbrirGaleria();
         }
     };
+
+    View.OnClickListener   onClickActualizar= new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AgregarProducto();
+        }
+    };
+
+    private void AgregarProducto() {
+        titulo = edtTitulo.getText().toString();
+        descripcion= edtDescripcion.getText().toString();
+        if(!imagen.equals(null))
+        {
+            MuestraProducto producto= new MuestraProducto(titulo,imagen,descripcion);
+            db.collection("Producto").document().set(producto).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                   edtTitulo.setText("");
+                   imgvfoto.setImageDrawable(getResources().getDrawable(R.drawable.zapatos));
+                   edtDescripcion.setText("");
+                   Toast.makeText(getContext(),"Se agregaron los datos correctamente",Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(),"¡Oops!, No se agregaron los datos",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+        }
+
+
+
+    }
 
     private void AbrirGaleria() {
         //Este es un intent implícito
@@ -138,6 +180,8 @@ public class ActualizarFragment extends Fragment {
                 }
             });
         }
-
     }
+
+
+
 }
