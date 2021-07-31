@@ -23,6 +23,16 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/menu_navigation_botom"
          />
+    
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btmNavigationPrincipal"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_actualizar"
+        />
 
 
 
