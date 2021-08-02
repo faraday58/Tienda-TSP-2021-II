@@ -2,6 +2,7 @@ package mx.unam.ingenieria.tienda.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +21,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -34,33 +42,65 @@ import mx.unam.ingenieria.tienda.R;
 public class InicioFragment extends Fragment {
 
     private static final String FILE_NAME = "archivo.txt" ;
+    private FirebaseFirestore mFirestore;
+    private EditText edtBuscar;
     private TextView txtvProducto;
     private ListView lstProductos;
+    private ImageButton imgbBuscar;
+    /*
     private String [] productos={
                 "Zapatos",
                 "WebCams",
                 "Mochila",
                 "SmartWatch"
+    };*/
 
-    };
+    private ArrayList<String> productos;
+
     private String productoSelect;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_inicio,container,false);
-
+        imgbBuscar= v.findViewById(R.id.imgbBusca);
+        productos= new ArrayList<>();
+        mFirestore= FirebaseFirestore.getInstance();
+        edtBuscar= v.findViewById(R.id.edtBuscar);
         lstProductos= v.findViewById(R.id.lstProductos);
         txtvProducto= v.findViewById(R.id.txtvArchivo);
-        RellenarLista();
         lstProductos.setOnItemClickListener(onClickItem);
         registerForContextMenu(lstProductos);
-
-
-
-
-
+        imgbBuscar.setOnClickListener(onClickBuscar);
         return v;
+    }
+    View.OnClickListener onClickBuscar = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String busqueda= edtBuscar.getText().toString();
+            productos.clear();
+
+            Buscar(busqueda);
+        }
+    };
+
+    private void Buscar(String busqueda)
+    {
+         mFirestore.collection("Ofertas").whereEqualTo("titulo",busqueda).get()
+                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                     @Override
+                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                         for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots)
+                         {
+                             productos.add(documentSnapshot.get("nombre").toString());
+                         }
+                         RellenarLista();
+
+                     }
+                 });
+
+
     }
 
 
@@ -152,22 +192,21 @@ public class InicioFragment extends Fragment {
 
         lstProductos.setAdapter(miAdapter);
 
+
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+    }
 
     AdapterView.OnItemClickListener onClickItem= new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(getContext(),"Mostrando " + productos[position] ,Toast.LENGTH_SHORT ).show();
+            Toast.makeText(getContext(),"Mostrando " + productos.get(position) ,Toast.LENGTH_SHORT ).show();
 
         }
     };
-
-
-
-
-
-
 
 }
